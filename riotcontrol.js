@@ -9,7 +9,10 @@ var RiotControl = {
   RiotControl[api] = function() {
     var args = [].slice.call(arguments);
     this._stores.forEach(function(el){
-      el[api].apply(null, args);
+        if (typeof el === 'object')
+            el[api].apply(null, args);
+        else
+            console.warn(el.name +' is not an object instance.')
     });
   };
 });
